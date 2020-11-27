@@ -83,6 +83,7 @@ build/llvm.BUILT:
 		install-objcopy \
 		install-c++filt \
 		llvm-config
+	cp comp/sse/* build/llvm/lib/clang/11.0.0/include/
 	touch build/llvm.BUILT
 
 build/wasi-libc.BUILT: build/llvm.BUILT
