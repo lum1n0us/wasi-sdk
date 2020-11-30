@@ -87,9 +87,11 @@ build/llvm.BUILT:
 	touch build/llvm.BUILT
 
 build/wasi-libc.BUILT: build/llvm.BUILT
+	patch -p1 -d src/wasi-libc/ < wasi_libc.patch \
 	$(MAKE) -C $(ROOT_DIR)/src/wasi-libc \
 		WASM_CC=$(BUILD_PREFIX)/bin/clang \
-		SYSROOT=$(BUILD_PREFIX)/share/wasi-sysroot
+		SYSROOT=$(BUILD_PREFIX)/share/wasi-sysroot \
+        THREAD_MODEL=posix
 	touch build/wasi-libc.BUILT
 
 build/compiler-rt.BUILT: build/llvm.BUILT
